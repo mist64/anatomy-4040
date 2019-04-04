@@ -18,29 +18,30 @@ else:
 
 data = data[2:]
 
-i = 0
-while i < len(data):
-#	sys.stdout.write(str(i) + ": ")
+while len(data):
+	line = data[:line_length]
+	data = data[line_length:]
 
-	c = data[i]
-	if c == 0x7a: # command line
-		i += 1
-		if i >= len(data):
-			break
+	if line[0] == 0x7a: # command line
 		sys.stdout.write('\u001b[7m')
-		while c != 0x1f:
+		while True:
+			line = line[1:]
+			if len(line) == 0:
+				break
+			c = line[0]
+			if c == 0x1f:
+				break
 			if c < 0x20:
 				sys.stdout.write(chr(c + 0x60))
 			else:
 				sys.stdout.write(chr(c))
-			i += 1
-			if i >= len(data):
-				break
-			c = data[i]
 		sys.stdout.write('\u001b[0m')
 		sys.stdout.write('\n')
 	else: # text line
-		while c != 0x1f:
+		while True:
+			c = line[0]
+			if c == 0x1f:
+				break
 			if c == 0x6d: # bold on
 				sys.stdout.write('\u001b[1m')
 			elif c == 0x7d: # bold off
@@ -51,15 +52,13 @@ while i < len(data):
 				sys.stdout.write('\u001b[0m')
 			elif c < 0x20:
 				sys.stdout.write(chr(c + 0x60))
-			elif c == 0x6f: # space?
-				sys.stdout.write('_')
+			elif c == 0x6f: # leading space
+				sys.stdout.write(' ')
 			else:
 				sys.stdout.write(chr(c))
-			i += 1
-			if i >= len(data):
+			line = line[1:]
+			if len(line) == 0:
 				break
-			c = data[i]
 		sys.stdout.write('\n')
-	i = int((i + line_length) / line_length) * line_length
 
 #pprint.pprint(data)
