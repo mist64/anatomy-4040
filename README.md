@@ -10,5 +10,5 @@ It was written with an unknown word processor, probably on a Commodore PET, and 
 
 The [resulting HTML](html/anatomy-4040.html) was checked into this repository and cleaned up.
 
-The converter was written by Michael Steil, <mist64@mac.com>.
+Conversion and cleanups by Michael Steil, <mist64@mac.com>.
 
