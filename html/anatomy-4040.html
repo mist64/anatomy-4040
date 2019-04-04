@@ -1694,7 +1694,8 @@ track number     1 - 17         21        1        00
 <u><b>5.3 - BLOCK - READ</b></u>
 
 
-<b>PURPOSE           :</b> Enables any block from a format compatible diskette to                         be read.
+<b>PURPOSE           :</b> Enables any block from a format compatible diskette to      
+                    be read.
 
 
 <b>SUPPORTED DOS     :</b> All
@@ -1731,7 +1732,8 @@ track number     1 - 17         21        1        00
 <u><b>5.4 - BLOCK - WRITE</b></u>
 
 
-<b>PURPOSE           :</b> Writes the current content of a specified buffer to any                        track and sector of a write compatible diskette.
+<b>PURPOSE           :</b> Writes the current content of a specified buffer to any
+                    track and sector of a write compatible diskette.
 
 
 <b>SUPPORTED DOS     :</b> All
@@ -1772,7 +1774,9 @@ track number     1 - 17         21        1        00
 <u><b>5.5 - BLOCK - EXECUTE</b></u>
 
 
-<b>PURPOSE           :</b> Reads the content from s specified track and sector into                       a specified buffer, then jumps in machine language to the                       start of the data in the buffer.
+<b>PURPOSE           :</b> Reads the content from s specified track and sector into
+                    a specified buffer, then jumps in machine language to the
+                    start of the data in the buffer.
 
 
 <b>SUPPORTED DOS     :</b> All
@@ -1809,7 +1813,8 @@ track number     1 - 17         21        1        00
 <u><b>5.6 - BLOCK - POINTER</b></u>
 
 
-<b>PURPOSE           :</b> Sets the beginning position for writing or reading data                        from/to a given sector/buffer.
+<b>PURPOSE           :</b> Sets the beginning position for writing or reading data
+                    from/to a given sector/buffer.
 
 
 <b>SUPPORTED DOS     :</b> All
@@ -1853,7 +1858,9 @@ track number     1 - 17         21        1        00
 <u><b>5.7 - MEMORY - WRITE</b></u>
 
 
-<b>PURPOSE           :</b> Enables data to be placed in the 4040 dual drive RAM.  A                       maximum of <u>34 BYTES</u> may be sent with each use of this                         command.
+<b>PURPOSE           :</b> Enables data to be placed in the 4040 dual drive RAM.  A
+                    maximum of <u>34 BYTES</u> may be sent with each use of this
+                    command.
 
 
 <b>SUPPORTED DOS     :</b> All
@@ -1890,7 +1897,9 @@ track number     1 - 17         21        1        00
 <u><b>5.8 - MEMORY - READ</b></u>
 
 
-<b>PURPOSE           :</b> Enables data to be read from the 4040 dual drive RAM/ROM.                      Only <u>1 BYTE</u> may be read from the DOS at a time by use                         of the <b>GET#</b> command.
+<b>PURPOSE           :</b> Enables data to be read from the 4040 dual drive RAM/ROM.
+                    Only <u>1 BYTE</u> may be read from the DOS at a time by use
+                    of the <b>GET#</b> command.
 
 
 <b>SUPPORTED DOS     :</b> All
@@ -1927,7 +1936,8 @@ track number     1 - 17         21        1        00
 <u><b>5.9 - MEMORY - EXECUTE</b></u>
 
 
-<b>PURPOSE           :</b> Jumps to the desired memory address within the <b>IEEE DOS  </b>                     Controller.
+<b>PURPOSE           :</b> Jumps to the desired memory address within the <b>IEEE DOS  </b>
+                    Controller.
 
 
 <b>SUPPORTED DOS     :</b> All
@@ -2002,7 +2012,8 @@ track number     1 - 17         21        1        00
 <u><b>5.11 - U1 or UA (BLOCK - READ)</b></u>
 
 
-<b>PURPOSE           :</b> Enables any block from a format compatible diskette to                         be read.
+<b>PURPOSE           :</b> Enables any block from a format compatible diskette to
+                    be read.
 
 
 <b>SUPPORTED DOS     :</b> All
@@ -2039,7 +2050,8 @@ track number     1 - 17         21        1        00
 <u><b>5.12 - U2 or UB (BLOCK - WRITE)</b></u>
 
 
-<b>PURPOSE           :</b> Writes the current content of a specified buffer to any                        track and sector of a write compatible diskette.
+<b>PURPOSE           :</b> Writes the current content of a specified buffer to any
+                    track and sector of a write compatible diskette.
 
 
 <b>SUPPORTED DOS     :</b> All
@@ -4428,39 +4440,46 @@ D2B3  4A       ???            ;copy
 D2B4  75       ???            ;rename
 D2B5  B7       ???            ;scratch
 D2B6  0D       ???            ;new
-  ;m-
-  ;b-
-  ;user
-  ;position
-  ;copy
-  ;rename
-  ;scratch
-  ;new
-                                                    <b>***************************</b>****  Structure images for commands (bits 0-7)
-                                                    <b>                           </b>      file structure  0: requires filename
-           #02        1: not default drive
-                      2: not greater than one file
-                      3: not pattern
-      file structure  4: requires filename
-           #01        5: not default drive
-                      6: not greater than one file
-                      7: not pattern
-                                                    D2C2  51       ???            ;copy   : 0101 0001
-  ;rename : 1101 1101
-  ;scratch: 0001 1100
-  ;new    : 1001 1110
-  ;load   : 0001 1100
-                                                    <b>***************************</b>****  Track/group table
-                                                    D2C7  11       ???            ;end group #1: 17   (density 00)
-  ;end group #2: 24   (density 01)
-  ;end group #3: 30   (density 10)
-  ;end group #4: 35   (density 11)
-                                                    <b>***************************</b>****  Mode table
-                                                    D2CB  52       ???            ;mode: read
-  ;mode: write
-  ;mode: append
-  ;mode: modify
-                                                    znx:IEERom d2cf-d2f0
+                              ;m-
+                              ;b-
+                              ;user
+                              ;position
+                              ;copy
+                              ;rename
+                              ;scratch
+                              ;new
+
+                            <b>***************************</b>
+                            ****  Structure images for commands (bits 0-7)
+<b>                           </b>
+                                  file structure  0: requires filename
+                                       #02        1: not default drive
+                                                  2: not greater than one file
+                                                  3: not pattern
+                                  file structure  4: requires filename
+                                       #01        5: not default drive
+                                                  6: not greater than one file
+                                                  7: not pattern
+
+D2C2  51       ???            ;copy   : 0101 0001
+                              ;rename : 1101 1101
+                              ;scratch: 0001 1100
+                              ;new    : 1001 1110
+                              ;load   : 0001 1100
+
+<b>***************************</b>****  Track/group table
+
+D2C7  11       ???            ;end group #1: 17   (density 00)
+                              ;end group #2: 24   (density 01)
+                              ;end group #3: 30   (density 10)
+                              ;end group #4: 35   (density 11)
+
+<b>***************************</b>****  Mode table
+
+D2CB  52       ???            ;mode: read
+                              ;mode: write
+                              ;mode: append
+                              ;mode: modify
 
 <b>*******************************  File type table</b>
 
