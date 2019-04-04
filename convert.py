@@ -1,5 +1,7 @@
-import pprint
+import html
 import sys
+
+make_html = True
 
 if len(sys.argv) < 1:
 	print('Usage: python convert.py <filename>')
@@ -18,6 +20,8 @@ else:
 
 data = data[2:]
 
+sys.stdout.write('<style>body {font-family: monospace; white-space: pre-wrap; }</style>\n')
+
 while len(data):
 	line = data[:line_length]
 	data = data[line_length:]
@@ -27,7 +31,9 @@ while len(data):
 		while True:
 			line = line[1:]
 			if len(line) == 0:
-				break
+				# command overflows line -> continue in next line
+				line = data[:line_length]
+				data = data[line_length:]
 			c = line[0]
 			if c == 0x1f:
 				break
@@ -85,30 +91,69 @@ while len(data):
 				elif command.startswith('cn'):
 					# ???, "cn0"/"cn1"
 					pass
-				else:
-					sys.stdout.write('COMMAND: \u001b[7m' + command + '\u001b[0m\n')
+				elif not make_html:
+						sys.stdout.write('COMMAND: \u001b[7m' + command + '\u001b[0m\n')
 	else: # text line
+		bold = False
+		underline = False
 		while True:
 			c = line[0]
 			if c == 0x1f:
 				sys.stdout.write('\n')
 				break
 			if c == 0x6d: # bold on
-				sys.stdout.write('\u001b[1m')
+				if not bold:
+					bold = True
+					if make_html:
+						sys.stdout.write('<b>')
+					else:
+						sys.stdout.write('\u001b[1m')
 			elif c == 0x7d: # bold off
-				sys.stdout.write('\u001b[0m')
+				if bold:
+					bold = False
+					if make_html:
+						sys.stdout.write('</b>')
+					else:
+						sys.stdout.write('\u001b[0m')
 			elif c == 0x7c: # underline on
-				sys.stdout.write('\u001b[4m')
+				if not underline:
+					underline = True
+					if make_html:
+						sys.stdout.write('<u>')
+					else:
+						sys.stdout.write('\u001b[4m')
 			elif c == 0x7e: # underline off
-				sys.stdout.write('\u001b[0m')
-			elif c < 0x20:
-				sys.stdout.write(chr(c + 0x60))
-			elif c == 0x6f: # leading space
-				sys.stdout.write(' ')
+				if underline:
+					underline = False
+					if make_html:
+						sys.stdout.write('</u>')
+					else:
+						sys.stdout.write('\u001b[0m')
 			else:
-				sys.stdout.write(chr(c))
+				if c == 0x6f: # (leading) space
+					sys.stdout.write(' ')
+				else:
+					if c < 0x20:
+						c += 0x60
+					if make_html:
+						sys.stdout.write(html.escape(chr(c)))
+
+					else:
+						sys.stdout.write(chr(c))
 			line = line[1:]
 			if len(line) == 0:
 				break
+		if bold:
+			if make_html:
+				sys.stdout.write('</b>')
+			else:
+				sys.stdout.write('\u001b[0m')
+		if underline:
+			if make_html:
+				sys.stdout.write('</u>')
+			else:
+				sys.stdout.write('\u001b[0m')
 
-#pprint.pprint(data)
+if make_html:
+	sys.stdout.write('<hr/>\n')
+
