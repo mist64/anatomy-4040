@@ -1,0 +1,26 @@
+À[z:CROM 7-                                                           z1:79:66:62:3:
+1                                                    z:A   4040,9-<>,C	 1988                                    FD7D  38       SEC                                                             FD7E  E5 0C    SBC $0C       ;	      ?        FD80  10 0C    BPL $FD8E     ;,                                             FD82  A6 1F    LDX $1F       ;  
+                           FD84  A5 0B    LDA $0B       ;          FD86  85 0C    STA $0C       ;      		      FD88  8A       TXA                                                             FD89  18       CLC                                                             FD8A  69 05    ADC #$05      ; 	  	                              FD8C  85 17    STA $17       ;  HI 	 	 BUFS                 FD8E  C6 1F    DEC $1F       ; 
+ 	  		 ?                     FD90  10 C4    BPL $FD56     ;,                                             FD92  8A       TXA           ; 
+    ?                           FD93  10 03    BPL $FD98     ;,                                             FD95  4C 54 FC JMP $FC54     ;
+  START                                                                                                                   m******************************  A
+  	: 
+*8+	  }      mooooooooooooooooooooooooooooooooooHDRS 	 HDRPNT}                                                                                                          FD98  8E A0 04 STX $04A0     ; 	 
+                           FD9B  86 1F    STX $1F       ;   
+                       FD9D  20 A5 FD JSR $FDA5     ; 
+   	 	            FDA0  A5 1E    LDA $1E       ;  
+ 	                        FDA2  4C C4 FD JMP $FDC4     ;
+  READ BLOCK 	                                                                                                      m******************************  C 
+     }    moooooooooooooooooooooooooooooooooo  	}                        moooooooooooooooooooooooooooooooooo.Y   =  		 	               moooooooooooooooooooooooooooooooooo.ACC = 
+ }                                                                                                         FDA5  A4 1F    LDY $1F       ;  
+                            FDA7  B9 03 04 LDA $0403,Y   ; 
+  :                           ooooooooooooooooooooooooooooooo	  7   
+ : 0=	, 1=
+           ooooooooooooooooooooooooooooooo	 6-4 :                                  ooooooooooooooooooooooooooooooooo000:        (8) (0):         ooooooooooooooooooooooooooooooooo001: 	      (9) (1): 	       ooooooooooooooooooooooooooooooooo010: 	     (A) (2): 	      ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo	             ooooooooooooooooooooooooooooooooo011:        (B) (3):  		        ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo &       ooooooooooooooooooooooooooooooooo100:        (C) (4):      ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo :  1      ooooooooooooooooooooooooooooooooo101: 
+       (D) (5): 
+         ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo                ooooooooooooooooooooooooooooooooo110:     (E) (6):        ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+                                               	  0  	: 0=#B, 1=#A                       FDAA  48       PHA           ; 
+                                     FDAB  29 70    AND #$70      ; 	: 6, 5, 4                              FDAD  85 1E    STA $1E       ;                        FDAF  98       TYA                                                             FDB0  0A       ASL           ;	 
+                          FDB1  0A       ASL           ;	                           FDB2  0A       ASL           ;	                           FDB3  69 21    ADC #$21      ; 	  	                              FDB5  85 18    STA $18       ;  LO 	 	 HDRS : #$FF= 
+   FDB7  A0 02    LDY #$02      ; 	   		 #$02                FDB9  68       PLA           ;	 
+                               FDBA  60       RTS                                                             z                                                                            z:CROM -                                                            
