@@ -14,8 +14,8 @@ chapter_2-b
 chapter_2-c
 chapter_2-d
 chapter_2-e
-#
----chapter_03---
+
+#---chapter_03---
 chapter_3-a
 chapter_3-b
 chapter_3-c
@@ -50,8 +50,8 @@ chapter_5-j
 chapter_5-k
 chapter_5-l
 chapter_5-m
-#
----chapter_06---
+
+#---chapter_06---
 chapter_6-a
 chapter_6-b
 chapter_6-c

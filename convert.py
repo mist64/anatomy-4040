@@ -35,11 +35,58 @@ while len(data):
 				command += chr(c + 0x60)
 			else:
 				command += chr(c)
-		if command.startswith('ln'):
-			for i in range(0, int(command[2])):
-				sys.stdout.write('\n')
+		if command.startswith('cm'):
+			 # file start/name
+			 # cm:<filename>
+			 pass
+		elif command.startswith('nx'):
+			 # file end/name
+			 # nx:<filename>
+			 pass
+		elif command.startswith('ft'):
+			 # footer
+			 # ft:<part1>,<part2>,<part3>
+			 pass
 		else:
-			sys.stdout.write('\u001b[7m' + command + '\u001b[0m\n')
+			for command in command.split(':'):
+				if command.startswith('ln'):
+					# empty lines
+					for i in range(0, int(command[2])):
+						sys.stdout.write('\n')
+				elif command =='fp':
+					# 2 empty lines?
+					sys.stdout.write('\n\n')
+				elif command.startswith('lm'):
+					# left margin
+					# lm<i>
+					pass
+				elif command.startswith('rm'):
+					# right margin
+					# rm<i>
+					pass
+				elif command.startswith('pp'):
+					# page size (incl. footer)
+					# pp<i>
+					pass
+				elif command.startswith('pg'):
+					# page size (excl. footer)
+					# pg<i>
+					pass
+				elif command.startswith('p#'):
+					# set page number
+					# p#<i>
+					pass
+				elif command.startswith('vp'):
+					# ???, "vp3"
+					pass
+				elif command.startswith('ju'):
+					# ???, "ju0"/"ju1"
+					pass
+				elif command.startswith('cn'):
+					# ???, "cn0"/"cn1"
+					pass
+				else:
+					sys.stdout.write('COMMAND: \u001b[7m' + command + '\u001b[0m\n')
 	else: # text line
 		while True:
 			c = line[0]
