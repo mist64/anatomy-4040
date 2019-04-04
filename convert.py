@@ -23,7 +23,7 @@ while len(data):
 	data = data[line_length:]
 
 	if line[0] == 0x7a: # command line
-		sys.stdout.write('\u001b[7m')
+		command = ''
 		while True:
 			line = line[1:]
 			if len(line) == 0:
@@ -32,15 +32,19 @@ while len(data):
 			if c == 0x1f:
 				break
 			if c < 0x20:
-				sys.stdout.write(chr(c + 0x60))
+				command += chr(c + 0x60)
 			else:
-				sys.stdout.write(chr(c))
-		sys.stdout.write('\u001b[0m')
-		sys.stdout.write('\n')
+				command += chr(c)
+		if command.startswith('ln'):
+			for i in range(0, int(command[2])):
+				sys.stdout.write('\n')
+		else:
+			sys.stdout.write('\u001b[7m' + command + '\u001b[0m\n')
 	else: # text line
 		while True:
 			c = line[0]
 			if c == 0x1f:
+				sys.stdout.write('\n')
 				break
 			if c == 0x6d: # bold on
 				sys.stdout.write('\u001b[1m')
@@ -59,6 +63,5 @@ while len(data):
 			line = line[1:]
 			if len(line) == 0:
 				break
-		sys.stdout.write('\n')
 
 #pprint.pprint(data)
